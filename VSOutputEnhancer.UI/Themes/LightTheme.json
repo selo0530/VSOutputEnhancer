@@ -3,7 +3,7 @@
     "ForegroundColor": "#BF0606"
   },
   "BuildMessageWarning": {
-    "ForegroundColor": "#D0A825"
+    "ForegroundColor": "#947101"
   },
 
   "BuildResultFailed": {

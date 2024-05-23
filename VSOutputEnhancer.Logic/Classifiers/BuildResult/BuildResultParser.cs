@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.Composition;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.Text;
@@ -26,7 +26,12 @@ namespace Balakin.VSOutputEnhancer.Logic.Classifiers.BuildResult
             var match = Regex.Match(text, regex, RegexOptions.Compiled);
             if (!match.Success)
             {
-                return false;
+				regex = "^========== (?:빌드|모두 다시 빌드|정리): 성공 (?<Succeeded>\\d+), 실패 (?<Failed>\\d+)(, (?:최신 (?<UpToDate>\\d+), )?(?:생략 (?<Skipped>\\d+)))? ==========\r\n$";
+				match = Regex.Match(text, regex, RegexOptions.Compiled);
+                if (!match.Success)
+				{
+                    return false;
+                }
             }
 
             result = ParsedData.Create<BuildResultData>(match, span.Span);
